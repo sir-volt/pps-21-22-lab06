@@ -26,11 +26,20 @@ object ConnectThree extends App:
 
   import Player.*
 
-  def find(board: Board, x: Int, y: Int): Option[Player] = ???
+  def find(board: Board, x: Int, y: Int): Option[Player] =
+    board.find(el => el.x == x && el.y == y).map(disc => disc.player)
 
-  def firstAvailableRow(board: Board, x: Int): Option[Int] = ???
+  def firstAvailableRow(board: Board, x: Int): Option[Int] =
+    if(board.isEmpty) then
+      Some(x)
+    else if(board.last.y < 3) then
+      Some(board.last.y + 1)
+    else
+      None
+
 
   def placeAnyDisk(board: Board, player: Player): Seq[Board] = ???
+
 
   def computeAnyGame(player: Player, moves: Int): LazyList[Game] = ???
 
