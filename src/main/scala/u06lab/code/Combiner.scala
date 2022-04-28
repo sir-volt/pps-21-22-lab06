@@ -8,9 +8,19 @@ trait Functions:
   def max(a: List[Int]): Int // gives Int.MinValue if a is empty
 
 object FunctionsImpl extends Functions:
-  override def sum(a: List[Double]): Double = ???
-  override def concat(a: Seq[String]): String = ???
-  override def max(a: List[Int]): Int = ???
+  override def sum(a: List[Double]): Double =
+    a.foldLeft(0.0)(_ + _)
+  override def concat(a: Seq[String]): String =
+    a.foldLeft("")((el1, el2) => el1.concat(el2))
+    /*
+    var word = ""
+    a.foreach(s => word = word + s)
+    word*/
+  override def max(a: List[Int]): Int =
+    if(a.nonEmpty) then
+      a.max
+    else
+      -2147483648
 
 /*
  * 2) To apply DRY principle at the best,
@@ -28,6 +38,9 @@ object FunctionsImpl extends Functions:
 trait Combiner[A]:
   def unit: A
   def combine(a: A, b: A): A
+
+//case class sumCombiner(els: List[Double]) extends Combiner[Double]:
+
 
 @main def checkFunctions(): Unit =
   val f: Functions = FunctionsImpl
