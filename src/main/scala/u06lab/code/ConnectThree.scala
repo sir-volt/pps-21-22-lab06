@@ -37,8 +37,8 @@ object ConnectThree extends App:
     else
       None
 
-
-  def placeAnyDisk(board: Board, player: Player): Seq[Board] = ???
+  def placeAnyDisk(board: Board, player: Player): Seq[Board] =
+    
 
 
   def computeAnyGame(player: Player, moves: Int): LazyList[Game] = ???
